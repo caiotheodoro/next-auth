@@ -1,7 +1,7 @@
 import { createContext, useEffect, useState } from "react";
-import { api } from "../services/api";
+import { api, signOut } from "../services/api";
 import { useRouter } from "next/router";
-import { setCookie, parseCookies } from "nookies";
+import { setCookie, parseCookies, destroyCookie } from "nookies";
 type SignInCredentials = {
     email: string;
     password: string;
@@ -36,8 +36,9 @@ export default function AuthProvider({ children }: AuthProviderProps) {
             api.get('/me').then(response => {
                 const {email, permissions, roles} = response.data;
 
-
                 setUser({email, permissions, roles});
+            }).catch(() => {
+                signOut();
             })
         }
 
