@@ -1,5 +1,5 @@
 import { createContext, useEffect, useState } from "react";
-import { api, signOut } from "../services/api";
+import {  api } from "../services/apiClient";
 import { useRouter } from "next/router";
 import { setCookie, parseCookies, destroyCookie } from "nookies";
 type SignInCredentials = {
@@ -38,7 +38,6 @@ export default function AuthProvider({ children }: AuthProviderProps) {
 
                 setUser({email, permissions, roles});
             }).catch(() => {
-                signOut();
             })
         }
 

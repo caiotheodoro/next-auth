@@ -2,7 +2,6 @@ import type { GetServerSideProps, NextPage } from 'next'
 import { FormEvent, useContext, useState } from 'react'
 import styles from '../styles/Home.module.css'
 import {AuthContext} from '../context/AuthContext'
-import { parseCookies } from 'nookies'
 import { withSSRGuest } from '../utils/withSSRGuest'
 const Home: NextPage = () => {
     const [email, setEmail] = useState('')
