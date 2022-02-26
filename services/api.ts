@@ -1,6 +1,7 @@
 import axios, {Axios, AxiosError} from 'axios';
 import Router from 'next/router';
 import {destroyCookie, parseCookies, setCookie} from 'nookies';
+import { AuthTokenError } from './errors/AuthTokenError';
 
 
 let isRefreshing = false;
@@ -79,6 +80,8 @@ export function setupApiClient (ctx = undefined){
                 } else {
                     if(process.browser){
                         signOut();
+                    } else {
+                        return Promise.reject(new AuthTokenError())
                     }
                     
                 }
